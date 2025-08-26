@@ -1,0 +1,182 @@
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            touch-action: none;
+        }
+
+        body {
+            overflow: hidden;
+            display: flex;
+            font-family: "Pacifico", sans-serif;
+            background: #ffffff url('assets/images/bg4.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            height: 100vh;
+            min-height: 100vh;
+        }
+
+        #drag-container,
+        #spin-container {
+            position: relative;
+            display: flex;
+            margin: auto;
+            transform-style: preserve-3d;
+            transform: rotateX(-10deg);
+            z-index: 100;
+        }
+
+        #spin-container img,
+        #spin-container video {
+            transform-style: preserve-3d;
+            position: absolute;
+            left: 0;
+            top: 0;
+            max-width: 120%;
+            max-height: 120%;
+            line-height: 200px;
+            font-size: 50px;
+            text-align: center;
+            box-shadow: 0 0 8px #fff;
+            -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0005);
+            transition: box-shadow 0.2s;
+        }
+
+        #spin-container img:hover,
+        #spin-container video:hover {
+            box-shadow: 0 0 15px #fffd;
+            -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0007);
+        }
+
+        #drag-container p {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(90deg);
+            color: rgb(0, 195, 255);
+            animation: fadein ease 15s;
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #ground {
+            width: 900px;
+            height: 900px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(90deg);
+            background: radial-gradient(circle farthest-side at center, #9993 50%, transparent 100%);
+        }
+
+        /* Music toggle circular button */
+        #music-container {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 1000;
+            display: flex;
+            gap: 14px;
+            background: none;
+            align-items: center;
+        }
+
+        .music-btn {
+            width: 56px;
+            height: 56px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6ee7b7 10%, #3b82f6 100%);
+            box-shadow: 0 4px 24px rgba(59, 130, 246, 0.15), 0 2px 6px rgba(38, 60, 120, 0.19);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: background 0.25s, box-shadow 0.15s, transform 0.08s;
+            outline: none;
+            position: relative;
+            /* smooth tick for focused state */
+        }
+
+        .music-btn:active {
+            transform: scale(0.96);
+        }
+
+        .music-btn:focus-visible {
+            box-shadow: 0 0 0 3px #bae6fd;
+        }
+
+        .music-btn .icon {
+            pointer-events: none;
+            vertical-align: middle;
+            transition: color 0.18s;
+        }
+
+        /* Optionally animate the icon change */
+        .music-btn .icon {
+            transition: opacity 0.2s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .music-btn .icon-hide {
+            opacity: 0;
+            position: absolute;
+        }
+
+        /* Hide the native controls of audio */
+        #bg-music {
+            display: none;
+        }
+
+        #canvas {
+            background-color: transparent;
+            margin: 0;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        p {
+            font-weight: 600;
+            font-size: 3vw;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 658px) {
+            p {
+                font-size: 9vw;
+            }
+
+            #music-container {
+                font-size: 18px;
+                top: 8px;
+                left: 8px;
+            }
+
+            .music-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 1.3rem;
+            }
+        }
